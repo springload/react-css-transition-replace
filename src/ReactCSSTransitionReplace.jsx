@@ -105,6 +105,10 @@ export default class ReactCSSTransitionReplace extends React.Component {
     this.setState({
       nextChild,
       height: this.state.currentChild ? ReactDOM.findDOMNode(this.refs.curr).offsetHeight : 0
+    }, () => {
+      if (this.isTransitioning) {
+        this.enterNext();
+      }
     });
 
     // Enqueue setting the next height to trigger the height transition.
